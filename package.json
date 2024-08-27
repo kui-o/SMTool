@@ -1,0 +1,19 @@
+{
+  "name": "smtool.js",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/smtool"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "4.3.5",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "5.0.0-beta.3",
+    "express-ejs-layouts": "^2.5.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "vhost": "^3.0.2"
+  }
+}
