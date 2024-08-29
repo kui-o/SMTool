@@ -17,6 +17,6 @@ app.set("layout extractStyles", true);
 app.set("layout extractMetas", true);
 
 
-app.use(mainRouter);
+app.use('/', mainRouter);
 
 module.exports = app;

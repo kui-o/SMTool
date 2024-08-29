@@ -2,21 +2,16 @@
     --background-color: #f3f3f3;
     --header-text-color: #879595;
     --panel-color: #fff;
-
-
+    --border-color: #c5c7c7;
     --text-color: #78726D;
-    --form-color: #ff500024;
-    --hw-header-color: #ecedfb;
-    --hw-tab-color: #6c027a;
-    --filter-value: 0;
+    --filter-value: 1;
 }
 :root[dark-theme="true"]{
     --background-color: #23272a;
+    --header-text-color: #879595;
     --panel-color: #37393e;
+    --border-color: #4c4f52;
     --text-color: #fff;
-    --form-color: #ff500066;
-    --hw-header-color: #6c027a;
-    --hw-tab-color: #fff;
     --filter-value: 1;
 }
 
@@ -53,7 +48,7 @@ a:hover, a:active {text-decoration: none;}
     background-color: var(--panel-color);
     width: 100%;
     color: var(--header-text-color);
-    border-bottom: solid 1px #c5c7c7;
+    border-bottom: solid 1px var(--border-color);
     z-index: 2;
 }
 .main-header>*{
@@ -284,6 +279,10 @@ a:hover, a:active {text-decoration: none;}
     font-size: 20px;
     margin-right: 5px;
     cursor: pointer;
+}
+
+.main-panel .container{
+    padding: 0;
 }
 
 

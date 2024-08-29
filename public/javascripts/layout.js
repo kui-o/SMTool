@@ -10,6 +10,26 @@ if (getUserTheme === 'true') {
     document.documentElement.setAttribute('dark-theme', 'false');
 }
 
+
+function showError(doneLoad){
+    if(!doneLoad) {
+        $(".loading-panel").first().hide();
+        $(".error-panel").first().show();
+    } else {
+        $(".main-panel").first().hide();
+        $(".error-panel").first().show();
+    }
+}
+function showContent(){
+    $(".loading-panel").first().hide();
+    $(".main-panel").first().show();
+}
+
+function hideContent(){
+    $(".loading-panel").first().show();
+    $(".main-panel").first().hide();
+}
+
 $(document).ready(()=>{
     if (getUserTheme === 'true') {
         $('#darkmode-toggle').prop('checked', true);
