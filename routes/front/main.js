@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
     res.render('main/index', {
         title: '쌀먹툴 - 로스트아크 도구 모음 사이트',
         version: process.env.PUBLIC_VERSION,
-        extractStyles: true
+        url: process.env.BACK_URL
     });
 });
 
