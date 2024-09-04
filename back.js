@@ -3,6 +3,6 @@ const app = express();
 
 const mainRouter = require('./routes/back/main.js');
 
-app.use('/', mainRouter);
+app.use('/main', mainRouter);
 
 module.exports = app;
