@@ -18,7 +18,13 @@ module.exports = {
                     'Accept': 'application/json',
                 }
                 const response = await axios.get(url, {headers: header});
-                if(response.status !== 200){
+                if(response.status === 429){
+                    console.error("LOA_NOTICE_API_LIMIT");
+                    return {
+                        success: false,
+                        code: "LOA_NOTICE_API_LIMIT"
+                    }
+                } else if(response.status !== 200){
                     return {
                         success: false,
                         code: "MSGLN_POST_ST"
@@ -47,7 +53,7 @@ module.exports = {
 
     getSMNotices: async ()=>{
         try {
-            const data = await db.query('SELECT title, content FROM notices WHERE is_deleted=0 ORDER BY publish_date DESC LIMIT 5');
+            const data = await db.query('SELECT title, content, publish_date FROM notices WHERE is_deleted=0 ORDER BY publish_date DESC LIMIT 5');
             return {
                 success: true,
                 body: data

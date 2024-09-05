@@ -7,19 +7,55 @@ const pool = mysql.createPool({
     password: process.env.DB_PW,
     database: 'smtool',
     charset: 'utf8mb4'
-});
+}).promise();
+
+function getCamelKey(snakeCase) {
+    return snakeCase.replace(/(_\w)/g, matches => matches[1].toUpperCase());
+}
+
+function keysToCamel(obj) {
+    if (obj instanceof Array) {
+        return obj.map(item => keysToCamel(item));
+    } else if (obj instanceof Object) {
+        const newObj = {};
+        Object.keys(obj).forEach(key => {
+            const camelKey = getCamelKey(key);
+            newObj[camelKey] = keysToCamel(obj[key]);
+        });
+        return newObj;
+    }
+    return obj;
+}
 
 module.exports = {
-    query: (sql, param = []) => {
-        return new Promise((resolve, reject) => {
-            pool.getConnection((err, conn) => {
-                if(err) return reject(err);
-                conn.query(sql, param, (err, result) => {
-                    if(err) return reject(err);
-                    conn.release();
-                    return resolve(result);
-                });
+    query: async (sql, param = []) => {
+        let conn;
+        try {
+            conn = await pool.getConnection();
+            const [data] = await conn.query(sql, param);
+            return keysToCamel(data);
+        } catch(err) {
+            console.error(err);
+            throw err;
+        } finally {
+            if(conn) conn.release();
+        }
+    },
+    queryAll: async (queryList) => {
+        let conn;
+        try {
+            conn = await pool.getConnection();
+            await conn.beginTransaction();
+            queryList.forEach(item => {
+                conn.query(item.sql, item.param);
             });
-        });
+            await conn.commit();
+        } catch(err) {
+            if(conn) await conn.rollback();
+            console.error(err);
+            throw err;
+        } finally {
+            if(conn) conn.release();
+        }
     }
 }

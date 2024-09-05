@@ -16,15 +16,23 @@
 .notice-list {
     padding: 0;
     margin: 0;
+    list-style-type: disc;
 }
 .notice-list>li {
     font-size: 18px;
     font-weight: 400;
     margin-bottom: 8px;
-    cursor: pointer;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: red; /*error message*/
+}
+.notice-list>li.notice-item::before {
+    content: '· ';
+}
+.notice-list>li.notice-item {
+    cursor: pointer;
+    color: var(--text-color);
 }
 
 .panel-head>h1{
