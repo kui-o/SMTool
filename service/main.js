@@ -1,5 +1,7 @@
+require('dotenv').config();
 const axios = require('axios');
-const db = require('../config/db.js')
+const { v4: UUID } = require('uuid');
+const db = require('../config/db.js');
 
 
 const loaNotice = {
@@ -13,11 +15,11 @@ module.exports = {
         if(now - loaNotice.lastUpdate > 180 * 1000){
             try {
                 const url = 'https://developer-lostark.game.onstove.com/news/notices';
-                const header = {
+                const headers = {
                     'Authorization': `Bearer ${process.env.LOA_API_TOKEN}`,
                     'Accept': 'application/json',
                 }
-                const response = await axios.get(url, {headers: header});
+                const response = await axios.get(url, {headers: headers});
                 if(response.status === 429){
                     console.error("LOA_NOTICE_API_LIMIT");
                     return {

@@ -38,6 +38,7 @@ body{
     background-color: var(--background-color);
     color: var(--text-color);
     font-family: 'Pretendard-Regular';
+    visibility: hidden;
 }
 
 a {text-decoration: none; outline: none}
@@ -74,7 +75,6 @@ a:hover, a:active {text-decoration: none;}
     width: 32px;
     height: 32px;
     display: inline-block;
-    margin-right: 10px;
 }
 .logo>span{
     font-family: 'PTAnboR';
@@ -83,13 +83,12 @@ a:hover, a:active {text-decoration: none;}
     font-size: 32px;
     font-weight: 400;
     letter-spacing: 4px;
-    margin-right: 40px;
-    margin-left: 5px;
     background: linear-gradient(to right bottom, #f83300, #FFD343);
     color: transparent;
     position: relative;
     top: 2px;
     -webkit-background-clip: text;
+    padding-left: 8px;
 }
 
 .hamburger {
@@ -283,6 +282,10 @@ a:hover, a:active {text-decoration: none;}
 
 .main-panel .container{
     padding: 0;
+}
+
+.no-animation {
+    transition: none !important;
 }
 
 

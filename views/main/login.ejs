@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title><%-title%></title>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(()=>{
+                const code = new URLSearchParams(window.location.search).get('code');
+                if(!code) return window.location.replace('/');
+
+                $.ajax({
+                    url: '<%-url%>'+'/main/login',
+                    type: 'POST',
+                    data: {code:code},
+                    dataType: 'json',
+                    success: function(response) {
+                        try{
+                            if(!response.success){
+                                alert("로그인에 실패하였습니다.");
+                                return window.location.replace('/');
+                            }
+                            localStorage.setItem('token', response.body);
+                            window.location.replace('/');
+                        }catch(e){
+                            console.error(e);
+                            alert("로그인 중 오류가 발생했습니다.");
+                            window.location.replace('/');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        if(xhr.status === 429){
+                            alert("로그인 시도가 너무 많습니다.\n잠시 후 다시 시도해 주세요");
+                        } else {
+                            alert("로그인 중 오류가 발생했습니다.");
+                        }
+                        window.location.replace('/');
+                    }
+                })
+            });
+        </script>
+    </head>
+    <body></body>
+</html>

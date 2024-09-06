@@ -20,7 +20,7 @@ function keysToCamel(obj) {
         const newObj = {};
         Object.keys(obj).forEach(key => {
             const camelKey = getCamelKey(key);
-            newObj[camelKey] = keysToCamel(obj[key]);
+            newObj[camelKey] = obj[key];
         });
         return newObj;
     }
@@ -47,7 +47,7 @@ module.exports = {
             conn = await pool.getConnection();
             await conn.beginTransaction();
             queryList.forEach(item => {
-                conn.query(item.sql, item.param);
+                conn.query(item.sql, item.params);
             });
             await conn.commit();
         } catch(err) {
@@ -57,5 +57,8 @@ module.exports = {
         } finally {
             if(conn) conn.release();
         }
+    },
+    getPoolConnection: async() => {
+        return await pool.getConnection();
     }
 }

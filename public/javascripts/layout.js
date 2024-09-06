@@ -1,15 +1,22 @@
 const isUserColorTheme = localStorage.getItem('dark-theme');
 const isOsColorTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-const getUserTheme = isUserColorTheme ? isUserColorTheme : isOsColorTheme;
-if (getUserTheme === 'true') {
-    localStorage.setItem('dark-theme', 'true');
-    document.documentElement.setAttribute('dark-theme', 'true');
-} else {
-    localStorage.setItem('dark-theme', 'false');
-    document.documentElement.setAttribute('dark-theme', 'false');
-}
+const darkmode = isUserColorTheme ? isUserColorTheme : isOsColorTheme;
 
+document.body.style.visibility = 'visible';
+if (darkmode === 'true') {
+    $('#darkmode-toggle').prop('checked', true);
+    document.documentElement.setAttribute('dark-theme', 'true');
+}
+$("#darkmode-toggle").change(function(){
+    if($(this).is(':checked')){
+        localStorage.setItem('dark-theme', 'true');
+        document.documentElement.setAttribute('dark-theme', 'true');
+    } else {
+        localStorage.setItem('dark-theme', 'false');
+        document.documentElement.setAttribute('dark-theme', 'false');
+    }
+});
 
 function showError(doneLoad){
     if(!doneLoad) {
@@ -30,17 +37,44 @@ function hideContent(){
     $(".main-panel").first().hide();
 }
 
+const ajaxRequests = [];
+let displayError = false;
+
 $(document).ready(()=>{
-    if (getUserTheme === 'true') {
-        $('#darkmode-toggle').prop('checked', true);
+    $('.darkmode-toggle-circle').removeClass('no-animation');
+    const token = localStorage.getItem('token');
+    if(token){
+        ajaxRequests.push(
+            $.ajax({
+                url: url+'/main/login',
+                type: 'GET',
+                dataType: 'json',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                success: function(response) {
+                    try{
+                        if(!response.success) return;
+                        $('#user-name').text(response.body);
+                        $('.user-form').show();
+                    }catch(e){
+                        console.error(e);
+                        $('.login-form').show();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    if(xhr.status === 401){
+                        localStorage.removeItem('token');
+                    }
+                    $('.login-form').show();
+                }
+            })
+        );
+    } else {
+        $('.login-form').show();
     }
-    $("#darkmode-toggle").change(function(){
-        if($(this).is(':checked')){
-            localStorage.setItem('dark-theme', 'true');
-            document.documentElement.setAttribute('dark-theme', 'true');
-        } else {
-            localStorage.setItem('dark-theme', 'false');
-            document.documentElement.setAttribute('dark-theme', 'false');
-        }
+
+    $.when(...ajaxRequests).always(()=>{
+        displayError ? showError(false) : showContent();
     });
 })
