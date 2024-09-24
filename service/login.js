@@ -214,5 +214,17 @@ module.exports = {
             }
         }
 
+    },
+    logout: async (token)=>{
+        try{
+            jwt.verify(token, process.env.JWT_KEY);
+            const payload = jwt.decode(token);
+            await db.queryAll([{
+                sql: 'DELETE FROM sessions WHERE session_key=?',
+                params: [payload.key]
+            }]);
+        } finally {
+            return { success: true }
+        }
     }
 }

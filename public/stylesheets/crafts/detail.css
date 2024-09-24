@@ -1,0 +1,38 @@
+.item-panel2{
+    padding: 10px 20px;
+    word-wrap: break-word;
+    background-color: var(--panel-color);
+    background-clip: border-box;
+    box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.15);
+}
+
+.button-panel,.crafted-panel{
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100%;
+    align-items: center;
+}
+
+.crafted-panel{
+    justify-content: flex-end;
+}
+
+.recipe-panel{
+    padding:0;
+}
+.recipe{
+    margin-top: 1rem;
+    word-wrap: break-word;
+    background-clip: border-box;
+    box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.15);
+}
+.recipe-head{
+    padding: 0 10px;
+    background: #FF5000;
+    color: white;
+    border-radius: 3px 3px 0 0;
+}
+.recipe-body{
+    padding: 20px 20px;
+    background-color: var(--panel-color);
+}

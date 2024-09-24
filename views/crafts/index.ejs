@@ -1,0 +1,105 @@
+<link rel="stylesheet" href="/stylesheets/crafts/style.css"/>
+
+<div class="crafts-panel mt-4">
+    <div class="table-header">
+        <div class="categories-panel">
+            <button class="categories-button active" value="">전체</button>
+            <button class="categories-button" value="배틀">배틀</button>
+            <button class="categories-button" value="요리">요리</button>
+            <button class="categories-button" value="생활">생활</button>
+            <button class="categories-button" value="특수">특수</button>
+        </div>
+        <div class="search-panel">
+            <label class="search-box">
+                <i class="search-icon fa-solid fa-magnifying-glass"></i>
+                <input id="search-input" type="text"/>
+            </label>
+        </div>
+    </div>
+    <table id="crafts-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th class="sortable_header" colspan="2">
+                    <span data-value="1">아이템<i class="fa-solid fa-minus"></i></span>
+                </th>
+                <th class="sortable_header">
+                    <span data-value="2">시세<i class="fa-solid fa-minus"></i></span>
+                </th>
+                <th class="sortable_header">
+                    <span data-value="3">판매이윤<i class="fa-solid fa-minus"></i></span>
+                </th>
+                <th class="sortable_header">
+                    <span data-value="4">활동지수<i class="fa-solid fa-minus"></i></span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="bookmark">
+                    <button><i class="fa-regular fa-star"></i></button>
+                </td>
+                <td class="item-icon">
+                    <span class="slot grade-2">
+                        <img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Battle_Item/Battle_Item_01_53.png"/>
+                    </span>
+                </td>
+                <td class="item-name">회오리 수류탄</td>
+                <td class="item-price">
+                    <div class="money">100</div>
+                </td>
+                <td class="item-profit">
+                    <div class="money">10</div>
+                </td>
+                <td class="energy-value">
+                    <div class="energy">
+                        <span>500</span>
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="bookmark">
+                    <button><i class="fa-regular fa-star"></i></button>
+                </td>
+                <td class="item-icon">
+                    <span class="slot grade-2">
+                        <img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Battle_Item/Battle_Item_01_53.png"/>
+                    </span>
+                </td>
+                <td class="item-name">회오리 수류탄</td>
+                <td class="item-price">
+                    <div class="money">100</div>
+                </td>
+                <td class="item-profit">
+                    <div class="money">10</div>
+                </td>
+                <td class="energy-value">
+                    <div class="energy">
+                        <span>500</span>
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="table-footer">
+        <div class="setting-panel">
+            <button><i class="fa-solid fa-gear"></i></button>
+        </div>
+        <div class="pagination-panel">
+            <button id="pbt-p" disabled><i class="fa-solid fa-angle-left"></i></button>
+            <button id="pbt-1" class="page-button active" value="1">1</button>
+            <button id="pbt-2" class="page-button" value="2">2</button>
+            <button id="pbt-3" class="page-button" value="3">3</button>
+            <button id="pbt-4" class="page-button" value="4">4</button>
+            <button id="pbt-5" class="page-button" value="5">5</button>
+            <button id="pbt-6" class="page-button" value="6">6</button>
+            <button id="pbt-7" class="page-button" value="7">7</button>
+            <button id="pbt-8" class="page-button" value="8">8</button>
+            <button id="pbt-n"><i class="fa-solid fa-angle-right"></i></button>
+        </div>
+    </div>
+</div>
+
+<script src="javascripts/crafts/table.js"></script>

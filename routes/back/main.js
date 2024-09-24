@@ -104,6 +104,18 @@ router.get('/login', async (req, res) => {
     }
 });
 
+router.post('/logout', async (req, res) => {
+    if(!req.headers.authorization) {
+        return res.json({success:true});
+    }
+    try {
+        const token = req.headers.authorization.split(' ')[1];
+        await loginService.logout(token);
+    } finally {
+        res.json({success:true});
+    }
+});
+
 
 
 module.exports = router;

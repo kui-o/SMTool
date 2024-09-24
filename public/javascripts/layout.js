@@ -37,6 +37,22 @@ function hideContent(){
     $(".main-panel").first().hide();
 }
 
+$('#user-name').on('click', ()=>{
+    const opt = confirm("로그아웃 하시겠습니까?");
+    if(!opt) return;
+    $.ajax({
+        url: url+'/main/logout',
+        type: 'POST',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+    }).always(function(){
+        localStorage.removeItem('token');
+        window.location.href='/';
+    });
+
+});
+
 const ajaxRequests = [];
 let displayError = false;
 

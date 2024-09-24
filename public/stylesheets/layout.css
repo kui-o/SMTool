@@ -5,6 +5,8 @@
     --border-color: #c5c7c7;
     --text-color: #78726D;
     --filter-value: 1;
+    --hover-color: #e3e3e3;
+    --form-color: #ff500024;
 }
 :root[dark-theme="true"]{
     --background-color: #23272a;
@@ -13,6 +15,8 @@
     --border-color: #4c4f52;
     --text-color: #fff;
     --filter-value: 1;
+    --hover-color: #4c4f52;
+    --form-color: #ff500066;
 }
 
 @font-face {
@@ -286,6 +290,15 @@ a:hover, a:active {text-decoration: none;}
 
 .no-animation {
     transition: none !important;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
 }
 
 

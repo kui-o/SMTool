@@ -98,10 +98,14 @@
 }
 
 #notice-modal .modal-header{
-    padding: .2rem 1rem;
-    font-size: 14px;
+    padding: 0 .6rem 0 1rem;
+    font-size: 8px;
     background-color: #FF5000;
     border-bottom: none;
+}
+.modal-header>button{
+    opacity: 1;
+    filter: invert(100%);
 }
 
 #notice-modal .modal-title{

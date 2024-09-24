@@ -2,8 +2,10 @@ const express = require('express');
 const app = express();
 const layout = require('express-ejs-layouts');
 
-const mainRouter = require('./routes/front/main.js');
 const path = require("path");
+
+const mainRouter = require('./routes/front/main.js');
+const craftsRouter = require('./routes/front/crafts.js');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -16,7 +18,7 @@ app.set("layout extractScripts", true);
 app.set("layout extractStyles", true);
 app.set("layout extractMetas", true);
 
-
+app.use('/crafts', craftsRouter);
 app.use('/', mainRouter);
 
 module.exports = app;

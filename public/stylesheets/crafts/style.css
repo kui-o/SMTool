@@ -1,0 +1,241 @@
+.active{
+    cursor: default !important;
+}
+
+.crafts-panel{
+    padding: 20px;
+    word-wrap: break-word;
+    background-color: var(--panel-color);
+    background-clip: border-box;
+    box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.15);
+}
+.table-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem 0 1.2rem 0;
+}
+
+.categories-panel{
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.categories-button{
+    background: none;
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    border-radius: 15px;
+    padding: 2px 9px;
+}
+.categories-button.active{
+    color: #FF5000;
+    border-color: #FF5000;
+}
+.sortable_header>span{
+    cursor: pointer;
+}
+.sortable_header i{
+    font-size: 1rem;
+    width: 1rem;
+    height: 1rem;
+    text-align: center;
+}
+.sortable_header i.fa-minus{
+    vertical-align: middle;
+    font-size: 0.8rem;
+}
+
+.search-box{
+    border: 1px solid var(--text-color);
+    border-radius: 15px;
+    width: 180px;
+    display: flex;
+    align-items: center;
+}
+.search-box>input{
+    border: none;
+    background: none;
+    color: var(--color-text);
+    min-width: 0;
+}
+.search-box>input:focus{
+    outline: none;
+}
+.search-icon{
+    margin: 0 4px 0 9px;
+}
+
+
+
+#crafts-table{
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    border-spacing: 0 2px;
+}
+#crafts-table>thead>tr{
+    height: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+#crafts-table>thead th{
+    white-space: nowrap;
+}
+#crafts-table>thead th>i{
+    color: var(--text-color);
+}
+#crafts-table>thead th:nth-child(2),.item-name{
+    text-align: left;
+}
+#crafts-table>tbody td{
+    width: auto;
+}
+#crafts-table>tbody td:nth-child(3){
+    width: 100%;
+}
+
+.slot {
+    width: 36px;
+    height: 36px;
+    display: block;
+    padding: 1px;
+    margin: 1px 8px 1px 0;
+    border: 1px solid #030303;
+    box-sizing: border-box;
+}
+.slot>img{
+    width: 100%;
+    height: 100%;
+}
+.grade-1{
+    background: linear-gradient(135deg,#1e2d0b,#304911);
+}
+.grade-2{
+    background: linear-gradient(135deg,#112739,#113d5d);
+}
+.grade-3{
+    background: linear-gradient(135deg,#2e123c,#480d5d);
+}
+.grade-4{
+    background: linear-gradient(135deg,#452b06,#9e5f04);
+}
+.grade-5{
+    background: linear-gradient(135deg,#48220b,#a24006);
+}
+.grade-6{
+    background: linear-gradient(135deg,#3d3325,#dcc999);
+}
+
+#crafts-table>tbody>tr{
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+}
+
+.bookmark>button{
+    background: none;
+    border: none;
+    padding: 0 3px 0 0;
+    font-size: 0.9rem;
+}
+.bookmark>button:hover i{
+    color: #ffc107;
+}
+.bookmark i{
+    color: var(--text-color);
+}
+.bookmark .fa-solid{
+    color: #ffc107;
+}
+
+.money{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.money::after {
+    content: "";
+    display: inline-block;
+    background-image: url('/images/icons/gold.png');
+    width: 16px;
+    height: 16px;
+    background-size: cover;
+    background-position: center;
+    margin-left: 2px;
+}
+
+.item-price,.item-profit,.energy-value{ min-width: 100px;}
+.energy{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.energy>span {
+    margin-right: 4px;
+}
+.energy>i{
+    color: #75b798;
+}
+
+.table-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+.setting-panel button{
+    background: none;
+    border: none;
+    color: var(--text-color);
+    border-radius: 16px;
+}
+.setting-panel button:hover{
+    background: var(--hover-color);
+}
+
+.pagination-panel button{
+    background: none;
+    border: none;
+    color: var(--text-color);
+    height: 26px;
+    position: relative;
+}
+
+.page-button::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #FF5000;
+    transition: width 0.4s ease;
+}
+
+.page-button.active::before {
+    width: 100%;
+}
+.pagination-panel button:disabled{
+    color: var(--hover-color);
+}
+.pagination-panel button:not(.active):not(:disabled):hover{
+    background: var(--hover-color);
+}
+
+input[type="number"]{
+    width: 40px;
+    border: none;
+    text-align: center;
+    background: var(--form-color);
+    color: var(--text-color);
+}
+
+@media (max-width: 575px) {
+    .crafts-panel{
+        padding: 20px 10px;
+    }
+    .search-box{
+        width: 130px;
+    }
+    .item-price,.item-profit,.energy-value{ min-width: 0;}
+}

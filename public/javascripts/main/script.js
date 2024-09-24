@@ -68,7 +68,7 @@ ajaxRequests.push(
 );
 
 $('#sm-notice').on('click', 'li.notice-item', (event)=>{
-    const item = $(event.target);
+    const item = $(event.currentTarget);
     $('#notice-title').text(item.data('title'));
     $('#notice-date').text(item.data('date'));
     $('#notice-content').html(item.data('content'));
@@ -76,5 +76,5 @@ $('#sm-notice').on('click', 'li.notice-item', (event)=>{
 });
 
 $('#loa-notice').on('click', 'li.notice-item', (event)=>{
-    window.open($(event.target).data('link'));
+    window.open($(event.currentTarget).data('link'));
 });
