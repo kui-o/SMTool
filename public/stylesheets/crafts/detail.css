@@ -13,8 +13,53 @@
     align-items: center;
 }
 
+.button-panel>button{
+    width: 33px;
+    height: 33px;
+    display: flex;
+    background: #ff5000;
+    padding: 5px;
+    border-radius: 4px;
+    color: white;
+    font-size: 19px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+.button-panel>button:not(:last-child){
+    margin-right: 5px;
+}
+.button-panel>button>i{
+    transition: all 0.4s ease-in-out;
+}
+#back-btn:hover>i{
+    transform: translateX(-5px);
+}
+#refresh-btn:hover>i{
+    transform: rotate(180deg);
+}
+#setting-btn:hover>i{
+    animation-name: spin;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
 .crafted-panel{
     justify-content: flex-end;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.crafted-panel .name{
+    margin-left: 0.3rem;
+}
+.crafted-panel>.icon>span{
+    width:33px;
+    height:33px;
+    padding: 0;
+}
+.crafted-panel .money{
+    margin-left: 0.5rem;
 }
 
 .recipe-panel{
@@ -33,6 +78,89 @@
     border-radius: 3px 3px 0 0;
 }
 .recipe-body{
-    padding: 20px 20px;
+    padding: 14px 20px 18px 20px;
     background-color: var(--panel-color);
+}
+
+table .money{
+    justify-content: flex-end;
+}
+
+.recipe-body table{
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    font-size: 17px;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.material-list .icon{
+    width: 42px;
+    height: 42px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+.material-list .icon img{
+    width: 100%;
+}
+.material-list .icon.fee i{
+    font-size: 30px;
+}
+.material-list .icon.fee{
+    background: none;
+}
+.material-list .name{
+    padding-left: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: auto;
+}
+.material-list .price{
+    width: 66px;
+    text-align: right;
+}
+
+.recipe-body .price-table {
+    border-spacing: 0 5px;
+}
+.price-table tr{
+    display: flex;
+    justify-content: space-between;
+    padding: 1px 0;
+}
+.price-table .unit{
+    color: #FF5000;
+}
+.price-table .unit>b{
+    color: var(--text-color);
+}
+.price-table .money>span{
+    margin-right: 2px;
+}
+
+.data-tip{
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: .94rem;
+}
+.data-tip>i{
+    font-size: .58rem;
+    margin-right: .3rem;
+}
+.data-tip b{
+    color: #FF5000;
+}
+
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

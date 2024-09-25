@@ -5,9 +5,9 @@
     <div class="row">
         <div class="col-sm-3">
             <div class="button-panel">
-                <button class="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
-                <button class="refresh-btn"><i class="fa-solid fa-arrows-rotate"></i></button>
-                <button class="setting-btn"><i class="fa-solid fa-gear"></i></button>
+                <button id="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
+                <button id="refresh-btn"><i class="fa-solid fa-arrows-rotate"></i></button>
+                <button id="setting-btn"><i class="fa-solid fa-gear"></i></button>
             </div>
         </div>
         <div class="col-sm-9">
@@ -19,8 +19,8 @@
                 </div>
                 <div class="name">회오리 수류탄</div>
                 <span>:</span>
-                <div class="price">
-                    <input type="number"/>
+                <div class="money">
+                    <input type="number" value="100"/>
                 </div>
             </div>
         </div>
@@ -29,7 +29,95 @@
 
 <div class="recipe-panel container">
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-lg-4">
+            <div class="recipe">
+                <div class="recipe-head">제작 공방</div>
+                <div class="recipe-body">
+                    <table class="material-list">
+                        <tbody>
+                            <tr>
+                                <td class="slot icon grade-1"><img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Battle_Item/Battle_Item_01_53.png"></td>
+                                <td class="name">두툼한 생고기</td>
+                                <td class="price">
+                                    <div class="money">
+                                        <input type="number" value="10"/>
+                                    </div>
+                                    <input class="item-unit" value="undefined" type="hidden">
+                                    <input class="item-amount" value="undefined" type="hidden">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="slot icon grade-1"><img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Battle_Item/Battle_Item_01_53.png"></td>
+                                <td class="name">두툼한 생고기</td>
+                                <td class="price">
+                                    <div class="money">
+                                        <input type="number" value="10"/>
+                                    </div>
+                                    <input class="item-unit" value="undefined" type="hidden">
+                                    <input class="item-amount" value="undefined" type="hidden">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="slot icon fee"><i class="fa-solid fa-screwdriver-wrench"></i></td>
+                                <td class="name">제작비</td>
+                                <td class="price">
+                                    <div class="money">
+                                        <input type="number" value="20"/>
+                                    </div>
+                                    <input class="item-unit" value="undefined" type="hidden">
+                                    <input class="item-amount" value="undefined" type="hidden">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr/>
+                    <table class="price-table">
+                        <tbody>
+                            <tr>
+                                <td class="unit"><b>[</b>1개당<b>]</b></td>
+                            </tr>
+                            <tr>
+                                <td class="title">원가(제작)</td>
+                                <td class="price">
+                                    <div class="money">
+                                        <span>10</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="price-title">이윤(제작)</td>
+                                <td class="price-price">
+                                    <div class="money">
+                                        <span>10</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="price-table">
+                        <tbody>
+                            <tr>
+                                <td class="title">원가(판매)</td>
+                                <td class="price">
+                                    <div class="money">
+                                        <span>10</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="title">이윤(판매)</td>
+                                <td class="price">
+                                    <div class="money">
+                                        <span>10</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
             <div class="recipe">
                 <div class="recipe-head">제작 공방</div>
                 <div class="recipe-body">
@@ -37,15 +125,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
-            <div class="recipe">
-                <div class="recipe-head">제작 공방</div>
-                <div class="recipe-body">
-
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
+        <div class="col-lg-4">
             <div class="recipe">
                 <div class="recipe-head">제작 공방</div>
                 <div class="recipe-body">
@@ -54,6 +134,11 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="data-tip">
+    <i class="fa-solid fa-caret-right"></i>
+    <span>시세는 <b>10분</b>마다 업데이트 되며 실제와 차이가 있을 수 있습니다</span>
 </div>
 
 <script src="javascripts/crafts/detail.js"></script>
