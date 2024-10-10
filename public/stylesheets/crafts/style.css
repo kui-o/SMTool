@@ -160,15 +160,20 @@
 .money::after {
     content: "";
     display: inline-block;
-    background-image: url('/images/icons/gold.png');
     width: 16px;
     height: 16px;
     background-size: cover;
     background-position: center;
     margin-left: 2px;
 }
+.money.gold:after{
+    background-image: url('/images/icons/gold.png');
+}
+.money.shilling:after{
+    background-image: url('/images/icons/shilling.png');
+}
 
-.item-price,.item-profit,.energy-value{ min-width: 100px;}
+#crafts-table .item-price,.item-profit,.energy-value{ min-width: 100px;}
 .energy{
     display: flex;
     align-items: center;
@@ -187,13 +192,13 @@
     align-items: center;
     margin-top: 20px;
 }
-.setting-panel button{
+.table-footer>.setting-panel button{
     background: none;
     border: none;
     color: var(--text-color);
     border-radius: 16px;
 }
-.setting-panel button:hover{
+.table-footer>.setting-panel button:hover{
     background: var(--hover-color);
 }
 
@@ -227,11 +232,116 @@
 }
 
 input[type="number"]{
-    width: 40px;
+    width: 46px;
     border: none;
     text-align: center;
     background: var(--form-color);
     color: var(--text-color);
+}
+input[type="number"]:disabled{
+    background: none;
+}
+
+.modal-body>.presets-panel{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 0.8rem;
+    color: #FF5000CC;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.modal-body>.presets-panel>span{
+    margin-right: 0.5rem;
+}
+.modal-body>.presets-panel>button{
+    border: 1px solid #FF5000CC;
+    border-radius: 1rem;
+    background: none;
+    margin: 0;
+    padding: 0;
+    width: 1.1rem;
+    height: 1.1rem;
+    font-size: 0.65rem;
+    color: #FF5000CC;
+}
+.modal-body>.presets-panel>button:not(:last-child){
+    margin-right: 0.25rem;
+}
+.modal-body>.presets-panel>button.active{
+    background-color:#FF5000CC;
+    color: #fff;
+    border: none;
+}
+
+.setting-split{
+    display: flex;
+}
+.setting-section{
+    flex: 1;
+    min-width: 0;
+}
+.setting-section>.setting-title{
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.setting-section>.setting-title>span>i{
+    margin-left: 0.3rem;
+    font-size: 0.9rem;
+}
+.setting-split>.vr{
+    width: 1px;
+    background-color: var(--text-color);
+    margin: 0 10px;
+}
+.setting-form{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.3rem 0;
+}
+.setting-form:nth-of-type(1)>span{
+    font-weight: bold;
+}
+.setting-form>span{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+    margin-right: 8px;
+}
+.setting-form>input{
+    margin-right: 16px;
+}
+.setting-form::after{
+    content: '%';
+    position: absolute;
+    right: 0;
+}
+.modal-button-panel{
+    padding: 15px 0 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.modal-button-panel>button{
+    font-size: 0.8rem;
+}
+.btn-save{
+    --bs-btn-color: #FF5000;
+    --bs-btn-border-color: #FF5000;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #FF5000;
+    --bs-btn-hover-border-color: #FF5000;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #FF5000;
+    --bs-btn-active-border-color: #FF5000;
+    --bs-btn-disabled-color: #FF5000;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #FF5000;
+    --bs-gradient: none;
 }
 
 @media (max-width: 575px) {

@@ -301,6 +301,26 @@ input[type="number"] {
     -moz-appearance: textfield;
 }
 
+.modal-header{
+    padding: 0 .6rem 0 1rem;
+    font-size: 8px;
+    background-color: #FF5000;
+    border-bottom: none;
+}
+.modal-header>button{
+    opacity: 1;
+    filter: invert(100%);
+}
+
+.modal-title{
+    font-size: 11px;
+    color: white;
+}
+
+.modal-content {
+    background-color: var(--panel-color);
+}
+
 
 /*mobile*/
 @media (min-width: 576px) {

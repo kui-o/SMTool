@@ -30,10 +30,10 @@
     margin-right: 5px;
 }
 .button-panel>button>i{
-    transition: all 0.4s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 #back-btn:hover>i{
-    transform: translateX(-5px);
+    transform: translateX(-6px);
 }
 #refresh-btn:hover>i{
     transform: rotate(180deg);
@@ -104,10 +104,10 @@ table .money{
 .material-list .icon img{
     width: 100%;
 }
-.material-list .icon.fee i{
+.material-list .icon.fee-icon i{
     font-size: 30px;
 }
-.material-list .icon.fee{
+.material-list .icon.fee-icon{
     background: none;
 }
 .material-list .name{
@@ -155,6 +155,22 @@ table .money{
     color: #FF5000;
 }
 
+.refresh-popover{
+    --bs-popover-bg: var(--panel-color);
+    --bs-popover-body-color: var(--text-color);
+    --bs-popover-font-size: 1rem;
+}
+.refresh-popover-body{
+    display: flex;
+    align-items: center;
+}
+.refresh-popover-body>i{
+    color: #ffa301;
+    font-size: 1.3rem;
+}
+.refresh-popover-body>span{
+    margin-left: 0.35rem;
+}
 
 @keyframes spin {
     from {

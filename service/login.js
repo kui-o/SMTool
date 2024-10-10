@@ -84,18 +84,20 @@ async function updateUserData(user){
     try {
         const [data] = await db.query('SELECT * FROM users WHERE user_id=?', [user.id]);
         if(!data){
-            return await db.queryAll([{
+            await db.queryAll([{
                 sql: 'INSERT INTO users (user_id, user_handle, user_name) VALUES (?, ?, ?)',
                 params: [user.id, user.handle, user.name]
-            }])
-        }
-        if(data.userHandle !== user.handle || data.userName !== user.name){
-            return await db.queryAll([{
+            },{
+                sql: 'INSERT INTO preferences (user_id) VALUES (?)',
+                params: [user.id]
+            }]);
+        } else if(data.userHandle !== user.handle || data.userName !== user.name){
+            await db.queryAll([{
                 sql: 'UPDATE users SET user_handle=?, user_name=? WHERE user_id=?',
                 params: [user.handle, user.name, user.id],
             }]);
         }
-        return { success: true };
+        return {success: true};
     } catch(err) {
         console.error(err);
         return {
@@ -184,7 +186,34 @@ module.exports = {
             }
         }
     },
-    getUser: async (token)=>{
+    getUser: async (id)=>{
+        try{
+            const [user] = await db.query('SELECT user_name FROM users WHERE user_id=?', [id]);
+            if(!user){
+                return {
+                    success: false,
+                    code: 'LSG_US_INV'
+                }
+            }
+            const [preference] = await db.query('SELECT * from preferences WHERE user_id=?', [id]);
+            if(preference) delete preference.userId;
+            return {
+                success: true,
+                body: {
+                    name: user.userName,
+                    preference: preference
+                }
+            }
+        } catch(err) {
+            console.error(err);
+            return {
+                success: false,
+                code: "LSG_JT_TC"
+            }
+        }
+
+    },
+    getUserId: async (token)=>{
         try{
             jwt.verify(token, process.env.JWT_KEY);
             const payload = jwt.decode(token);
@@ -195,25 +224,17 @@ module.exports = {
                     code: 'LSG_SE_INV'
                 }
             }
-            const [user] = await db.query('SELECT user_name FROM users WHERE user_id=?', [session.userId]);
-            if(!user){
-                return {
-                    success: false,
-                    code: 'LSG_US_INV'
-                }
-            }
             return {
                 success: true,
-                body: user.userName
+                body: session.userId
             }
         } catch(err) {
             console.error(err);
             return {
                 success: false,
-                code: "LSG_JT_TC"
+                code: 'LSG_UI_TC'
             }
         }
-
     },
     logout: async (token)=>{
         try{

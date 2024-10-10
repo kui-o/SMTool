@@ -41,14 +41,27 @@ module.exports = {
             if(conn) conn.release();
         }
     },
+    queryArray: async (sql, param = []) => {
+        let conn;
+        try {
+            conn = await pool.getConnection();
+            const [data] = await conn.query(sql, [param]);
+            return keysToCamel(data);
+        } catch(err) {
+            console.error(err);
+            throw err;
+        } finally {
+            if(conn) conn.release();
+        }
+    },
     queryAll: async (queryList) => {
         let conn;
         try {
             conn = await pool.getConnection();
             await conn.beginTransaction();
-            queryList.forEach(item => {
-                conn.query(item.sql, item.params);
-            });
+            for (const item of queryList) {
+                await conn.query(item.sql, item.params);
+            }
             await conn.commit();
         } catch(err) {
             if(conn) await conn.rollback();

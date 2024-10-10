@@ -23,9 +23,9 @@ module.exports = {
                 if(response.status === 429){
                     console.error("LOA_NOTICE_API_LIMIT");
                     return {
-                        success: false,
-                        code: "LOA_NOTICE_API_LIMIT"
-                    }
+                        success: true,
+                        body: loaNotice.notices
+                    };
                 } else if(response.status !== 200){
                     return {
                         success: false,
@@ -64,6 +64,21 @@ module.exports = {
             return {
                 success: false,
                 code: "MSGSN_POST_TC"
+            }
+        }
+    },
+
+    updatePreference: async (id, data) => {
+        try {
+            await db.queryAll([{
+                sql: 'UPDATE preferences SET generic=? WHERE user_id=?',
+                params: [data, id],
+            }]);
+            return {success: true};
+        }catch(err){
+            return {
+                success: false,
+                code: "MSGUP_POST_TC"
             }
         }
     }

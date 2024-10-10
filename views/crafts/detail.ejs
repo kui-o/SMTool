@@ -6,7 +6,9 @@
         <div class="col-sm-3">
             <div class="button-panel">
                 <button id="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
-                <button id="refresh-btn"><i class="fa-solid fa-arrows-rotate"></i></button>
+                <button id="refresh-btn">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                </button>
                 <button id="setting-btn"><i class="fa-solid fa-gear"></i></button>
             </div>
         </div>
@@ -17,10 +19,11 @@
                         <img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Battle_Item/Battle_Item_01_53.png"/>
                     </span>
                 </div>
-                <div class="name">회오리 수류탄</div>
+                <div id="crafted-name" class="name">회오리 수류탄</div>
                 <span>:</span>
-                <div class="money">
-                    <input type="number" value="100"/>
+                <div class="money gold">
+                    <input id="crafted-price" type="number" value="100"/>
+                    <input id="crafted-unit" type="hidden"/>
                 </div>
             </div>
         </div>
@@ -33,103 +36,87 @@
             <div class="recipe">
                 <div class="recipe-head">제작 공방</div>
                 <div class="recipe-body">
+                    <input class="crafted-amount" type="hidden"/>
                     <table class="material-list">
                         <tbody>
                             <tr>
                                 <td class="slot icon grade-1"><img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Battle_Item/Battle_Item_01_53.png"></td>
                                 <td class="name">두툼한 생고기</td>
                                 <td class="price">
-                                    <div class="money">
-                                        <input type="number" value="10"/>
+                                    <div class="money gold">
+                                        <input class="item-price" type="number" data-item="10000" value="10"/>
                                     </div>
-                                    <input class="item-unit" value="undefined" type="hidden">
-                                    <input class="item-amount" value="undefined" type="hidden">
+                                    <input class="item-unit" value="1" type="hidden">
+                                    <input class="item-amount" value="1" type="hidden">
                                 </td>
                             </tr>
                             <tr>
                                 <td class="slot icon grade-1"><img src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Battle_Item/Battle_Item_01_53.png"></td>
                                 <td class="name">두툼한 생고기</td>
                                 <td class="price">
-                                    <div class="money">
-                                        <input type="number" value="10"/>
+                                    <div class="money gold">
+                                        <input class="item-price" type="number" data-item="10000" value="10"/>
                                     </div>
-                                    <input class="item-unit" value="undefined" type="hidden">
-                                    <input class="item-amount" value="undefined" type="hidden">
+                                    <input class="item-unit" value="1" type="hidden">
+                                    <input class="item-amount" value="1" type="hidden">
                                 </td>
                             </tr>
                             <tr>
-                                <td class="slot icon fee"><i class="fa-solid fa-screwdriver-wrench"></i></td>
+                                <td class="slot icon fee-icon"><i class="fa-solid fa-screwdriver-wrench"></i></td>
                                 <td class="name">제작비</td>
-                                <td class="price">
-                                    <div class="money">
-                                        <input type="number" value="20"/>
+                                <td class="fee">
+                                    <div class="money gold">
+                                        <input class="fee-amount" type="number" value="20"/>
+                                        <input class="fee-type" type="hidden" value="-1"/>
                                     </div>
-                                    <input class="item-unit" value="undefined" type="hidden">
-                                    <input class="item-amount" value="undefined" type="hidden">
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <hr/>
-                    <table class="price-table">
+                    <table class="price-table homemade">
                         <tbody>
                             <tr>
                                 <td class="unit"><b>[</b>1개당<b>]</b></td>
                             </tr>
                             <tr>
                                 <td class="title">원가(제작)</td>
-                                <td class="price">
-                                    <div class="money">
-                                        <span>10</span>
+                                <td class="price-td">
+                                    <div class="money gold">
+                                        <span class="cost">0</span>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="price-title">이윤(제작)</td>
-                                <td class="price-price">
-                                    <div class="money">
-                                        <span>10</span>
+                                <td class="price-td">
+                                    <div class="money gold">
+                                        <span class="profit">0</span>
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <table class="price-table">
+                    <table class="price-table sales">
                         <tbody>
                             <tr>
                                 <td class="title">원가(판매)</td>
-                                <td class="price">
-                                    <div class="money">
-                                        <span>10</span>
+                                <td class="price-td">
+                                    <div class="money gold">
+                                        <span class="cost">0</span>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="title">이윤(판매)</td>
-                                <td class="price">
-                                    <div class="money">
-                                        <span>10</span>
+                                <td class="price-td">
+                                    <div class="money gold">
+                                        <span class="profit">0</span>
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="recipe">
-                <div class="recipe-head">제작 공방</div>
-                <div class="recipe-body">
-
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="recipe">
-                <div class="recipe-head">제작 공방</div>
-                <div class="recipe-body">
-
                 </div>
             </div>
         </div>
@@ -141,4 +128,8 @@
     <span>시세는 <b>10분</b>마다 업데이트 되며 실제와 차이가 있을 수 있습니다</span>
 </div>
 
-<script src="javascripts/crafts/detail.js"></script>
+<%- include('modal.ejs') %>
+
+
+<script>const itemId = <%-id%>;</script>
+<script src="/javascripts/crafts/detail.js"></script>
