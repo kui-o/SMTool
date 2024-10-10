@@ -88,6 +88,14 @@ function showContent(){
     $(".main-panel").first().show();
 }
 
+function initTooltips(){
+    $('[data-bs-toggle="tooltip"]').each(function () {
+        if (!$(this).data('bs.tooltip')) {
+            new bootstrap.Tooltip(this);
+        }
+    });
+}
+
 $('#user-name').on('click', ()=>{
     const opt = confirm("로그아웃 하시겠습니까?");
     if(!opt) return;
@@ -156,6 +164,5 @@ $(document).ready(()=>{
         displayError ? showError(false) : showContent();
     });
 
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    initTooltips();
 })

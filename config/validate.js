@@ -17,6 +17,7 @@ const cpAjv = ajv.compile({
             maxItems: 120,
             items: {
                 type: "integer",
+                minimum: 0
             }
         },
         settings: {
@@ -25,6 +26,11 @@ const cpAjv = ajv.compile({
             items: {
                 type: "object",
                 properties: {
+                    preset: {
+                        type: "integer",
+                        minimum: 1,
+                        maximum: 3
+                    },
                     enabledList: {
                         type: "array",
                         minItems: 3,
@@ -38,7 +44,8 @@ const cpAjv = ajv.compile({
                         minItems: 27,
                         maxItems: 27,
                         items: {
-                            type: "integer"
+                            type: "integer",
+                            minimum: 0
                         }
                     }
                 },

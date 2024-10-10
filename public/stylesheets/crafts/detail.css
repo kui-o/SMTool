@@ -76,6 +76,12 @@
     background: #FF5000;
     color: white;
     border-radius: 3px 3px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.recipe-head>i{
+    font-size: 0.9rem;
 }
 .recipe-body{
     padding: 14px 20px 18px 20px;
@@ -121,6 +127,15 @@ table .money{
     width: 66px;
     text-align: right;
 }
+td.title>i{
+    font-size: 0.9rem;
+    margin-left: 0.2rem;
+}
+span.discount-value,span.bonus-value{
+    font-size: 0.8rem;
+    margin-left: 0.2rem;
+    color: #00A36C;
+}
 
 .recipe-body .price-table {
     border-spacing: 0 5px;
@@ -132,6 +147,14 @@ table .money{
 }
 .price-table .unit{
     color: #FF5000;
+    display: flex;
+    align-items: center;
+}
+.price-table .unit>span{
+    width: 30px;
+    height: 30px;
+    margin-right: 0.3rem;
+    border: none;
 }
 .price-table .unit>b{
     color: var(--text-color);
@@ -170,6 +193,15 @@ table .money{
 }
 .refresh-popover-body>span{
     margin-left: 0.35rem;
+}
+
+.recipe-tooltip>p{
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+.recipe-tooltip>hr{
+    margin: 0.5rem;
 }
 
 @keyframes spin {

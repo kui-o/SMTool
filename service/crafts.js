@@ -155,7 +155,7 @@ async function refreshData(){
         }*/
 
         const items = await db.query('SELECT item_id, item_name, item_price, item_unit, item_image, item_tier, category FROM items');
-        const recipes = await db.query('SELECT crafted_item, crafted_amount, recipe_json, fee_amount, fee_currency, fee_type, energy_amount FROM recipes');
+        const recipes = await db.query('SELECT recipe_id, crafted_item, crafted_amount, recipe_json, fee_amount, fee_currency, fee_type, energy_amount FROM recipes');
 
         const result = [];
 
@@ -178,7 +178,6 @@ async function refreshData(){
             const fee = recipe.feeCurrency.toUpperCase() === 'G' ? recipe.feeAmount : 0;
             const cost = ((costMat + fee) / recipe.craftedAmount * craftedItem.itemUnit) + Math.ceil(craftedItem.itemPrice * 0.05);
             const profit = craftedItem.itemPrice - cost;
-            const energyValue = recipe.energyAmount <= 0 ? 0 : 100 / recipe.energyAmount * (profit / craftedItem.itemUnit * recipe.craftedAmount);
 
             const oldResult = result.find(obj => obj.itemId === craftedItem.itemId);
             if(!oldResult){
@@ -196,7 +195,7 @@ async function refreshData(){
                     feeAmount: fee,
                     feeType: recipe.feeType,
                     energy: recipe.energyAmount,
-                    energyValue: energyValue,
+                    tmp: recipe.recipeId,
                 })
             } else if(oldResult.itemProfit < profit){
                 oldResult.itemProfit = profit;
@@ -205,7 +204,7 @@ async function refreshData(){
                 oldResult.feeAmount = fee;
                 oldResult.feeType = recipe.feeType;
                 oldResult.energy = recipe.energyAmount;
-                oldResult.energyValue = energyValue;
+                oldResult.tmp = recipe.recipeId;
             }
         }
         cash.itemList = result;

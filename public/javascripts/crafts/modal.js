@@ -3,7 +3,11 @@ let craftsPreference;
 function loadCraftsPreference() {
     const obj = JSON.parse(sessionStorage.getItem('preference.crafts') || localStorage.getItem('preference.crafts') || '{"bookmarks":[],"settings":[]}');
     obj.bookmarks ??= [];
-    obj.settings ??= [];
+    obj.settings ??= Array(3).fill().map(() => ({
+        preset: 1,
+        enabledList: Array(3).fill(false),
+        valueList: Array(27).fill(0)
+    }));
     return obj;
 }
 
@@ -31,6 +35,46 @@ function saveCraftsPreference(param) {
     } else {
         localStorage.setItem('preference.crafts', json);
     }
+}
+
+let craftsModifier = {
+    cost: Array(8).fill(0),
+    bonus: Array(8).fill(0),
+    energy: Array(8).fill(0),
+}
+
+function applyModifier(){
+    const enabledList = $('#setting-modal input[type="checkbox"]').map((i, ele) => $(ele).prop('checked'));
+    const valueList = $('#setting-modal input[type="number"]').map((i, ele) => parseInt($(ele).val()));
+    if(!enabledList[0]) {
+        craftsModifier.cost = Array(8).fill(0);
+    } else {
+        const defaultValue = valueList[0] || 0;
+        for(let i=0; i<8; i++){
+            craftsModifier.cost[i] = defaultValue + (valueList[i+1] || 0);
+        }
+    }
+
+    if(!enabledList[1]) {
+        craftsModifier.bonus = Array(8).fill(0);
+    } else {
+        const defaultValue = valueList[9] || 0;
+        for(let i=0; i<8; i++){
+            const percentage = defaultValue + (valueList[i+10] || 0);
+            craftsModifier.bonus[i] = 5 * (1 + (percentage / 100));
+        }
+    }
+
+    if(!enabledList[2]) {
+        craftsModifier.energy = Array(8).fill(0);
+    } else {
+        const defaultValue = valueList[18] || 0;
+        for(let i=0; i<8; i++){
+            craftsModifier.energy[i] = defaultValue + (valueList[i+19] || 0)
+        }
+    }
+    if(typeof applyModifierToRecipe === 'function') applyModifierToRecipe();
+    if(typeof calculate === 'function') calculate();
 }
 
 function renderModal(num = 1) {
@@ -61,7 +105,7 @@ function renderModal(num = 1) {
 }
 
 function extractModal(num = 1) {
-    const data = {enabledList: [], valueList: []};
+    const data = {preset: num, enabledList: [], valueList: []};
     $('#setting-modal input[type="checkbox"]').each((i, item) => {
         data.enabledList[i] = $(item).prop('checked');
     });
@@ -74,6 +118,7 @@ function extractModal(num = 1) {
 function initCrafts() {
     craftsPreference = loadCraftsPreference();
     renderModal();
+    applyModifier();
 }
 
 initArrays.push(initCrafts);
@@ -84,6 +129,7 @@ $('#setting-modal #reset-btn').on('click', (event) => {
     const opt = confirm('모든 값을 초기화하시겠습니까?\n초기화 후 저장 버튼을 눌러 주세요.');
     if (!opt) return;
     craftsPreference.settings = Array(3).fill().map(() => ({
+        preset: 1,
         enabledList: Array(3).fill(false),
         valueList: Array(27).fill(0)
     }));
@@ -95,6 +141,7 @@ $('#setting-modal #reset-btn').on('click', (event) => {
 $('#setting-modal #save-btn').on('click', (event) => {
     $('#setting-modal').modal('hide');
     const num = parseInt($('.presets-panel>button.active').text());
+    applyModifier();
     extractModal(num);
     saveCraftsPreference(craftsPreference);
 });

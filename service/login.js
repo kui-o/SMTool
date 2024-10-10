@@ -229,7 +229,6 @@ module.exports = {
                 body: session.userId
             }
         } catch(err) {
-            console.error(err);
             return {
                 success: false,
                 code: 'LSG_UI_TC'

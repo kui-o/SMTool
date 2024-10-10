@@ -33,16 +33,20 @@
     color: #FF5000;
     border-color: #FF5000;
 }
-.sortable_header>span{
+.sortable-header>span{
     cursor: pointer;
 }
-.sortable_header i{
+.sortable-header i{
     font-size: 1rem;
     width: 1rem;
     height: 1rem;
     text-align: center;
 }
-.sortable_header i.fa-minus{
+.sortable-header i.fa-circle-question{
+    vertical-align: middle;
+    font-size: 0.85rem;
+}
+.sortable-header i.fa-minus{
     vertical-align: middle;
     font-size: 0.8rem;
 }
@@ -352,4 +356,5 @@ input[type="number"]:disabled{
         width: 130px;
     }
     .item-price,.item-profit,.energy-value{ min-width: 0;}
+    td.item-name{font-size:0;}
 }
